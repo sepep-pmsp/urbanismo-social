@@ -9,6 +9,8 @@ services:
       MYSQL_DATABASE: wordpress_local
       MYSQL_USER: wordpress_db_user
       MYSQL_PASSWORD: wordpress_db_password
+    networks:
+      - app-network
 
   wordpress:
     depends_on:
@@ -24,7 +26,13 @@ services:
       WORDPRESS_DB_USER: wordpress_db_user
       WORDPRESS_DB_PASSWORD: wordpress_db_password
       WORDPRESS_DB_NAME: wordpress_local
+    networks:
+      - app-network
 
 volumes:
   db_data:
   wordpress_data:
+
+networks:
+  app-network:
+    driver: bridge 
